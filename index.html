@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vent and Rant Box</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <h1>🌀 Vent and Rant Box</h1>
+            <p>Your safe space to let it all out and send it into the void.</p>
+        </header>
+        <main>
+            <form id="rantForm">
+                <textarea placeholder="Type your rant here..." required></textarea>
+                <button type="submit">Send to the Void</button>
+            </form>
+            <div class="animation-area">
+                <img src="assets/envelope-svgrepo-com.svg" alt="Envelope" class="envelope">
+                <div class="void"></div>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>Built with ❤️ for cathartic release.</p>
+    </footer>
+    <script src="script.js"></script>
+
+    <script>
+        // Redirect to the void page on form submission
+        document.getElementById('rantForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            window.location.href = "void.html";
+        });
+
+        document.getElementById('rantForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const userVent = document.querySelector('textarea').value;
+            sessionStorage.setItem('userVent', userVent); // Save vent to session storage
+
+            window.location.href = "void.html";
+        });
+
+    </script>
+
+
+</body>
+
+</html>

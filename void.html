@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Void</title>
+    <link rel="stylesheet" href="stylee.css">
+</head>
+
+
+<body class="void-container">
+    <div class="stars"></div>
+    <div class="shooting-stars"></div>
+    <div class="vent-text-container"></div>
+
+    <img src="assets/envelope-svgrepo-com.svg" alt="Letter" class="floating-letter">
+    <div class="progress-bar"></div>
+    <div id="countdown" class="countdown"></div>
+
+
+    <script>
+        
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 6000);
+
+       
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            starsContainer.appendChild(star);
+        }
+
+        const ventTextContainer = document.querySelector('.vent-text-container');
+        const userVent = sessionStorage.getItem('userVent') || "Your vent is floating...";
+        const ventElement = document.createElement('div');
+        ventElement.textContent = userVent;
+        ventElement.classList.add('vent-text');
+        ventElement.style.top = Math.random() * 100 + 'vh';
+        ventElement.style.left = Math.random() * 100 + 'vw';
+        ventTextContainer.appendChild(ventElement);
+
+        const echoSound = new Audio('assets/echo-sound.mp3');
+        echoSound.play();
+        const secretStar = document.createElement('div');
+        secretStar.classList.add('star');
+        secretStar.style.width = '10px';
+        secretStar.style.height = '10px';
+        secretStar.style.background = 'gold';
+        secretStar.style.top = '50vh';
+        secretStar.style.left = '50vw';
+        starsContainer.appendChild(secretStar);
+
+        secretStar.addEventListener('click', () => {
+            alert("You found the secret star!");
+        });
+
+
+        const shootingStarsContainer = document.querySelector(".shooting-stars");
+
+
+        setInterval(() => {
+            const star = document.createElement("div");
+            star.classList.add("shooting-star");
+
+           
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.left = Math.random() * 100 + "vw";
+
+            
+            shootingStarsContainer.appendChild(star);
+
+            
+            setTimeout(() => {
+                star.remove();
+            }, 1500); 
+        }, 2000); 
+
+
+
+
+    </script>
+</body>
+
+</html>
