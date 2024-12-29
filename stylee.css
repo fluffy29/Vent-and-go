@@ -1,11 +1,9 @@
-/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Main Page Styles */
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #3a3d40, #18191a);
@@ -163,7 +161,6 @@ body {
     opacity: 0;
   }
 }
-
 .vent-text-container {
   position: absolute;
   top: 0;
@@ -171,26 +168,44 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.vent-text {
+.vent-particle {
   position: absolute;
-  font-size: 1.2rem;
-  color: white;
+  font-size: 0.8rem; /* Small, star-like appearance */
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.5);
   opacity: 0;
-  animation: float-text 6s ease-in-out forwards;
+  animation: drift 6s ease-in-out forwards, glow 3s infinite alternate;
 }
 
-@keyframes float-text {
+@keyframes drift {
   0% {
-    transform: translate(-50%, -50%);
+    transform: translate(0, 0) scale(0.8);
     opacity: 0;
   }
-  50% {
+  30% {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, calc(-50% - 50px));
+    transform: translate(
+        calc(-50px + 100px * random()),
+        calc(-50px + 100px * random())
+      )
+      scale(1);
     opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1),
+      0 0 20px rgba(255, 255, 255, 0.8);
   }
 }
